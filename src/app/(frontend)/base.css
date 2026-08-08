@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  /* ── AZUL (cor principal) ── */
+  --color-ds-pine:   #0E2B24;
+  --color-ds-ascend:   #14B184;
+  --color-ds-off-white:   #F3F6F4;
+  --color-ds-slate:   #5C6B66;
+
+  /* ── NEUTRAS ── */
+  --color-ds-neutral-900: #000000;
+  --color-ds-neutral-600: #121212;
+  --color-ds-neutral-500: #393939;
+  --color-ds-neutral-400: #3E3E3E;
+  --color-ds-neutral-350: #797979;
+  --color-ds-neutral-300: #9A9A9A;
+  --color-ds-neutral-200: #CACACA;
+  --color-ds-neutral-150: #E0E0E0;
+  --color-ds-neutral-100: #EDEDED;
+  --color-ds-neutral-50:  #F7F7F7;
+  --color-ds-neutral-0:   #FFFFFF;
+
+  /* ── BREAKPOINTS CUSTOMIZADOS ── */
+  --breakpoint-xs: 32rem;
+  --breakpoint-mlg: 62rem;
+
+  /* ── TIPOGRAFIA ── */
+  --font-ds-base: var(--font-figtree), sans-serif;
+  --font-ds-ibm-sans: var(--font-ibm-sans), sans-serif;
+  --font-ds-ibm-mono: var(--font-ibm-mono), sans-serif;
+}
+
+@theme inline {
+  /* ── SEMÂNTICAS ── */
+  --color-ds-success: var(--color-ds-green-100);
+  --color-ds-error:   #D93025;
+  --color-ds-warning: var(--color-ds-yellow-60);
+  --color-ds-info:    var(--color-ds-blue-100);
+}
+
+@layer base {
+  *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  html{
+    font-family: var(--font-ds-base);
+  }
+}
+
+@utility background-section {
+  width: 100%;
+  padding-inline: 1.25rem; /* px-5 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+
+  @media (min-width: 48rem) { /* md */
+    padding-inline: 2.5rem; /* px-10 */
+  }
+}
+
+@utility max-w-content {
+  max-width: 360rem;
+  width: 100%;
+}
+
+/* Underline que entra da esquerda para a direita no hover e sai
+   também da esquerda para a direita ao sair. O truque é transicionar
+   apenas o background-size: o background-position troca de âncora
+   instantaneamente (left ao entrar, right ao sair), então a linha
+   sempre cresce/encolhe no mesmo sentido. */
+@utility link-underline {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+  transition: background-size 300ms ease;
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+    background-position: 0% 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
