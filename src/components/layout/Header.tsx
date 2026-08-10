@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 /* MOTION */
 import * as motion from "motion/react-client"
-import { motionContainer, fadeLeftItem, fadeDownItem, fadeUpItem, fadeRightItem } from "@/lib/animation"
+import { motionContainer, fadeDownItem} from "@/lib/animation"
 
 /* COMPONENTES */
 import HeaderDrawer from './HeaderDrawer';

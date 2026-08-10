@@ -8,7 +8,7 @@ import spirecode from "@/assets/images/SPIRECODE.svg"
 
 async function Footer() {
   return(
-    <footer className="footer background-section px-4 py-6 xs:px-6 mlg:px-8 xs:py-10 font-ds-ibm-mono">
+    <footer className="footer background-section px-4 py-6 xs:px-6 mlg:px-8 xs:py-8 font-ds-ibm-mono">
       <div className="footer__content @container/footer max-w-content bg-ds-pine text-ds-off-white px-8 py-10 mlg:p-10 rounded-3xl flex flex-col gap-8">
         <div className="footer__row flex-col-reverse @min-4xl:flex-row flex justify-between @min-4xl:items-end gap-4 gap-y-8">
           <article className="footer__article flex flex-col gap-2 w-full max-w-74">

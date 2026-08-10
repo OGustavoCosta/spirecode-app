@@ -77,10 +77,10 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
   return (
     <html lang="pt-br" className={`${IBM_mono.variable} ${IBM_sans.variable} ${figtree.variable}`}>
-      <body className='flex flex-col min-h-screen bg-ds-neutral-50 overflow-x-hidden max-w-dvw'>
+      <body className='flex flex-col min-h-screen bg-ds-off-white overflow-x-hidden max-w-dvw'>
         <MotionProvider>
           <SkipLink/>
-          <Header absolute={true}/>
+          <Header/>
           <main id='main' className='main grow'>{children}</main>
           <Footer/>
         </MotionProvider>
