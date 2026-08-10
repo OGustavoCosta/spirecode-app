@@ -7,8 +7,10 @@ import { ArrowRightLong } from "../Icons"
 /* ======================================================================== */
 /* IMPORTAÇÃO DE COMPONENTES */
 import Select from "../form/Select"
-import type { SelectOption } from "../form/Select"
 
+/* ======================================================================== */
+/* IMPORTAÇÃO DE TIPOS */
+import type { SelectOption } from "../form/Select"
 import type { SubmitEvent } from "react"
 
 /* TODO: valores de exemplo — trocar pelos serviços reais */
