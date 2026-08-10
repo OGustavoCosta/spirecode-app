@@ -34,18 +34,18 @@ function ContactSection(){
   const inputStyle = 'rounded-none border-[0px] border-b border-ds-pine/50 text-sm px-0 py-3 text-ds-neutral-400 focus:outline-none'
 
   return(
-    <div className="contactUs__background background-section py-16 xl:pr-16">
-      <section className="contactUs max-w-content flex flex-col items-center md:flex-row gap-8 xl:gap-16">
+    <div className="contactUs__background background-section py-16">
+      <section className="contactUs max-w-content flex flex-col items-center md:flex-row gap-8 xl:gap-16 xl:pr-8">
         {/* BAGACEIRA (onde o filho chora e a mão não vê!) */}
-        <div className="contactUs__banner flex-1 w-full min-h-135 relative flex flex-col justify-end items-end">
+        <div className="contactUs__banner flex-1 w-full min-h-135 relative flex flex-col justify-end items-end @container/contact-banner">
           <img className="contactUs__img w-full h-full object-cover rounded-3xl bg-ds-neutral-200 absolute inset-0 -z-1" src="https://picsum.photos/700/400/?blur" alt="" />
 
-          <div className="ContactUs__wrapper w-full p-4 mlg:p-6 xl:p-8">
-            <h2 className="contactUs__title font-ds-ibm-mono font-medium text-[2.5rem]/[120%] text-ds-off-white max-w-140 lg:max-w-110 lg:translate-y-1/2">Prefere que a Spire entre em contato?</h2>
+          <div className="ContactUs__wrapper w-full p-4 @min-3xl:p-6 xl:p-8">
+            <h2 className="contactUs__title font-ds-ibm-mono font-medium text-3xl/[120%] @min-sm:text-[2.5rem]/[120%] @min-3xl:text-5xl/[120%] text-ds-off-white @min-3xl:max-w-110 @min-3xl:translate-y-1/2">Prefere que a Spire entre em contato?</h2>
           </div>
 
-          <div className="contactUs__card bg-ds-off-white pt-4 pl-4 sm:pt-6 sm:pl-6 rounded-tl-3xl w-full max-w-[60%] xs:max-w-[65%] xs:w-70 xl:max-w-95 relative">
-            <p className="contactUs__text text-sm/[120%]  xs:text-lg/[120%] xl:text-2xl/[120%]">Sem compromisso! A gente entende sua demanda e te dá um caminho.</p>
+          <div className="contactUs__card bg-ds-off-white pt-4 pl-4 sm:pt-6 sm:pl-6 rounded-tl-3xl max-w-[65%] w-95 @min-3xl:max-w-[40%] @min-3xl:w-95 relative">
+            <p className="contactUs__text text-sm/[120%]  @min-lg:text-lg/[120%] @min-3xl:text-2xl/[120%]">Sem compromisso! A gente entende sua demanda e te dá um caminho.</p>
             
             <span className="w-6 aspect-square absolute bottom-0 left-0 -translate-x-full block bg-[radial-gradient(circle_at_top_left,transparent_23.5px,var(--color-ds-off-white)_24px)]" aria-hidden="true"></span>
             <span className="w-6 aspect-square absolute top-0 right-0 -translate-y-full block bg-[radial-gradient(circle_at_top_left,transparent_23.5px,var(--color-ds-off-white)_24px)]" aria-hidden="true"></span>
