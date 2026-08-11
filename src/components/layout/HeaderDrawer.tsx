@@ -28,7 +28,7 @@ function HeaderDrawer(){
     <>
       {/* BOTÃO SANDUÍCHE */}
       <motion.button
-        className="headerDrawer__button md:hidden cursor-pointer"
+        className="headerDrawer__button md:hidden cursor-pointer bg-ds-off-white p-2 rounded-lg fixed top-[40px] right-[32px]"
         onClick={() => setIsOpen(true)}
         aria-label="Abrir menu de navegação"
         aria-expanded={isOpen}
@@ -51,7 +51,7 @@ function HeaderDrawer(){
       <FocusTrap active={isOpen} focusTrapOptions={{ onDeactivate: close, initialFocus: '#drawer-close', allowOutsideClick: true }}>
         <div
           id="header-drawer"
-          className={`fixed top-0 left-0 w-full h-full max-w-[420px] bg-white z-20 p-5 flex flex-col gap-6 transition-transform bg-ds-yellow-5 text-ds-blue-130 ${ isOpen ? 'translate-x-0' : '-translate-x-full'}`}
+          className={`fixed top-0 left-0 w-full h-full max-w-70 bg-white z-20 p-5 flex flex-col gap-6 transition-transform bg-ds-yellow-5 text-ds-blue-130 ${ isOpen ? 'translate-x-0' : '-translate-x-full'}`}
           role="dialog"
           aria-modal={true}
           aria-label="Menu de navegação"

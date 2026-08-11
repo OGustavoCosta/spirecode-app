@@ -40,7 +40,7 @@ function ContactSection(){
       <section className="contactUs max-w-content flex flex-col items-center md:flex-row gap-8 xl:gap-16 xl:pr-8">
         {/* BAGACEIRA (onde o filho chora e a mão não vê!) */}
         <div className="contactUs__banner flex-1 w-full min-h-135 relative flex flex-col justify-end items-end @container/contact-banner">
-          <img className="contactUs__img w-full h-full object-cover rounded-3xl bg-ds-neutral-200 absolute inset-0 -z-1" src="https://picsum.photos/700/400/?blur" alt="" />
+          <img className="contactUs__img w-full h-full object-cover rounded-3xl bg-ds-neutral-200 absolute inset-0 -z-1" src="https://picsum.photos/seed/spire-contact-1/800/800/?blur" alt="" />
 
           <div className="ContactUs__wrapper w-full p-4 @min-3xl:p-6 xl:p-8">
             <h2 className="contactUs__title font-ds-ibm-mono font-medium text-3xl/[120%] @min-sm:text-[2.5rem]/[120%] @min-3xl:text-5xl/[120%] text-ds-off-white @min-3xl:max-w-110 @min-3xl:translate-y-1/2">Prefere que a Spire entre em contato?</h2>

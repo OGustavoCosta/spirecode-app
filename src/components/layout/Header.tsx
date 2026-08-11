@@ -11,9 +11,9 @@ import HeaderScroll from './HeaderScroll';
 
 function Header(){
   return(
-    <header className={`header background-section py-6 flex flex-col items-center w-full absolute text-ds-neutral-900 font-ds-ibm-mono`}>
+    <header className={`header background-section py-6 flex flex-col items-center w-full absolute text-ds-neutral-900 font-ds-ibm-mono z-10`}>
       {/* HEADER PRINCIPAL */}
-      <div className="header__main max-w-content w-full flex justify-start md:justify-center items-center">
+      <div className="header__main max-w-content w-full flex justify-end md:justify-center items-center">
         {/* MENU MOBILE */}
         <HeaderDrawer/>
 
