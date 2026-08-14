@@ -1,5 +1,7 @@
 'use client'
 
+/* ======================================================================== */
+/* IMPORTAÇÃO DE HOOKS */
 import { useRef, useState } from 'react'
 
 /* ======================================================================== */
@@ -15,6 +17,10 @@ import BlogCard from '@/components/card/BlogCard';
 /* ======================================================================== */
 /* IMPORTAÇÃO DE ÍCONES */
 import { ArrowLeftLong, ArrowRightLong } from "@/components/Icons"
+
+/* ======================================================================== */
+/* IMPORTAÇÃO DE ANIMAÇÕES */
+import { nudge } from "@/lib/animation"
 
 type BlogCardInfo = {
   id: number
@@ -55,22 +61,6 @@ const swiperBreakpoints = {
   1280: { spaceBetween: 40, slidesOffsetBefore: 0, slidesOffsetAfter: 0, slidesPerView: 3 },
 }
 
-/* Empurra a seta para o lado que ela indica e traz de volta.
-   Anima o <svg>, e não o próprio botão, para não brigar com o
-   hover:scale-105 — os dois disputariam a mesma propriedade transform. */
-function nudge(button: HTMLElement, direction: -1 | 1){
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-
-  button.querySelector('svg')?.animate(
-    [
-      { transform: 'translateX(0)' },
-      { transform: `translateX(${direction * 0.5}rem)` },
-      { transform: 'translateX(0)' },
-    ],
-    { duration: 300, easing: 'ease-out' },
-  )
-}
-
 function BlogSection(){
   const swiperRef = useRef<SwiperInstance | null>(null)
 
@@ -83,13 +73,13 @@ function BlogSection(){
     setIsEnd(swiper.isEnd)
   }
 
-  const buttonStyle = 'cursor-pointer transition-all hover:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:scale-100'
+  const buttonStyle = 'cursor-pointer transition-all hover:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed'
 
   return(
     <div className="blog__background background-section py-10 px-0 min-[1280px]:px-8">
       <section className="blog max-w-content max-w-[1280px] w-full space-y-10">
         <header className="blog__header text-ds-pine flex flex-col md:flex-row justify-between gap-y-8 px-4 md:px-8 mlg:px-10">
-          <h2 className="blog__title text-[2rem]/[100%] font-ds-ibm-mono font-bold max-w-90 lg:max-w-content">ASSUNTOS QUE PODEM TE INTERESSAR</h2>
+          <h2 className="blog__title text-[2rem]/[100%] font-ds-ibm-mono font-bold max-w-90 lg:max-w-content uppercase">ASSUNTOS QUE PODEM TE INTERESSAR</h2>
           <div className="blog__wrapper flex gap-24 items-center w-full md:w-auto justify-between">
             <a href="" className="blog__link underline hover:scale-101 hover:opacity-80 transition-all block whitespace-nowrap shrink-0">Ver Todos</a>
             <div className="blog__buttons flex  min-[1100px]:hidden gap-3">
