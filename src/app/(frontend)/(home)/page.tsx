@@ -1,11 +1,11 @@
 /* ======================================================================== */
 /* IMPORTAÇÃO DE COMPONENTES */
 import HeroSection from "./components/HeroSection"
+import ServicesSection from "./components/ServicesSection"
 import WhyUsSection from "@/components/sections/WhyUsSection"
+import CasesSection from "./components/CasesSection"
 import BlogSection from "./components/BlogSection"
 import ContactSection from "@/components/sections/ContactSection"
-import ServicesSection from "./components/ServicesSection"
-import ServicesSectionV2 from "./components/ServicesSectionV2"
 
 function HomePage() {
   return (
@@ -13,6 +13,7 @@ function HomePage() {
       <HeroSection/>
       <ServicesSection/>
       <WhyUsSection/>
+      <CasesSection/>
       <BlogSection/>
       <ContactSection/>
     </>

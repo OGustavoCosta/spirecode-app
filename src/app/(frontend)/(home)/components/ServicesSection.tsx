@@ -44,7 +44,7 @@ type ServiceInfo = {
 }
 
 /* TODO: copy é rascunho e as fotos são do Picsum — revisar com o time */
-const serviceInfo: ServiceInfo[] = [
+const servicesInfo: ServiceInfo[] = [
   {
     id: 1,
     header: 'Time de T.I',
@@ -155,18 +155,18 @@ function ServicesSection(){
           modules={[Parallax]}
           parallax={true}
           speed={1000}
-          spaceBetween={300}
+          spaceBetween={40}
           slidesPerView={1}
 
           onSwiper={(swiper) => { swiperRef.current = swiper; syncEdges(swiper) }}
           onSlideChange={syncEdges}
           onResize={syncEdges}
         >
-          {serviceInfo.map(({banner, altBanner, badge, header, color = 'bg-ds-ascend', title, text, button, link, id}) => (
+          {servicesInfo.map(({banner, altBanner, badge, header, color = 'bg-ds-ascend', title, text, button, link, id}) => (
             <SwiperSlide key={id}>
               <article className='serviceCard w-full relative px-4 xs:px-6 lg:px-16 min-[1440px]:px-8 flex flex-col items-end'>
                 <header 
-                  className={`serviceCard__header relative mlg:absolute w-fit top-0 right-0 xs:right-20 mlg:right-28 min-[1440px]:right-40! ${color} py-8 sm:py-12 px-10 sm:px-18 pr-30 sm:pr-40 md:pr-50`}
+                  className={`serviceCard__header relative mlg:absolute w-fit top-0 right-0 xs:right-20 mlg:right-28 min-[1440px]:right-40! ${color} py-8 sm:py-12 px-10 sm:px-18 pr-30 sm:pr-40 md:pr-50 min-h-30 flex items-center`}
                   data-swiper-parallax="-300"
                 >
                   <h3 className="serviceCard__title max-w-52 xs:max-w-56 text-ds-off-white text-[2rem]/[115%] xs:text-[2.5rem]/[115%] sm:text-5xl/[115%] font-ds-ibm-mono font-bold">{header}</h3>
