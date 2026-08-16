@@ -38,16 +38,19 @@ import MotionProvider from '@/components/providers/MotionProvider'
 /* METADADOS */
 import openGraphBanner from '@/assets/images/openGraph-banner.jpg'
 
+const siteUrl = 'https://spirecode.com.br'
+const siteDescription = 'A Spirecode desenvolve sites, landing pages e sistemas sob medida para negócios que querem crescer online, unindo design, performance e acessibilidade em cada projeto.'
+
 export const metadata = {
-  title: 'Spire',
+  title: 'Spirecode | Sites e sistemas sob medida',
   applicationName: "Spirecode",
-  description: '',
-  keywords: [],
-  metadataBase: new URL('https://spirecode.com.br'),
+  description: siteDescription,
+  keywords: ['desenvolvimento de sites', 'landing page', 'sistemas sob medida', 'ERP', 'agência de tecnologia', 'Spirecode'],
+  metadataBase: new URL(siteUrl),
   alternates: { canonical: '/' },
   authors: [
-    { name: 'Gustavo Costa', url: '' },
-    { name: 'Marlon Perez', url: '' }
+    { name: 'Gustavo Costa', url: 'https://spirecode.com.br' },
+    { name: 'Marlon Perez', url: 'https://spirecode.com.br' }
   ],
   formatDetection: {
     email: false,
@@ -56,8 +59,8 @@ export const metadata = {
   },
   openGraph: {
     images: openGraphBanner,
-    title: 'Spirecode',
-    description: 'O Spirecode é uma iniciativa inovadora do Instituto Federal Baiano – Campus Guanambi, que utiliza drones para transformar o aprendizado de estudantes e professores [...]',
+    title: 'Spirecode | Sites e sistemas sob medida',
+    description: 'Sites, landing pages e sistemas sob medida para o seu negócio crescer online, unindo design, performance e acessibilidade em cada projeto.',
     type: 'website',
     siteName: 'Spirecode',
     locale: 'pt_BR',
@@ -65,11 +68,62 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Spirecode',
-    description: 'O Spirecode é uma iniciativa inovadora do Instituto Federal Baiano – Campus Guanambi, que utiliza drones para transformar o aprendizado de estudantes e professores [...]',
+    title: 'Spirecode | Sites e sistemas sob medida',
+    description: 'Sites, landing pages e sistemas sob medida para o seu negócio crescer online, unindo design, performance e acessibilidade em cada projeto.',
     images: [openGraphBanner],
   },
   robots: { index: true, follow: true },
+}
+
+/* ======================================================================== */
+/* SCHEMA.ORG */
+import type { ProfessionalService, WebSite, WithContext } from 'schema-dts'
+import spirecodeLogo from '@/assets/images/SPIRECODE.svg'
+
+/* '@id' compartilhado entre os dois blocos: o WebSite referencia a
+   ProfessionalService como publisher em vez de duplicar os dados, então
+   o Google entende que é a mesma entidade nos dois lugares. */
+const organizationId = `${siteUrl}/#organization`
+
+/* .src é o único jeito de virar string: o campo `logo` do schema.org quer
+   uma URL, e o import de asset do Next devolve um StaticImageData. */
+const logoUrl = new URL(spirecodeLogo.src, siteUrl).toString()
+
+/* ProfessionalService (não Organization genérico) porque a Spirecode tem
+   endereço físico e o esforço comercial começa local, em Guanambi - BA —
+   areaServed é o que sinaliza isso sem implicar atendimento presencial
+   (o serviço em si é remoto). Ambição nacional vem depois, ampliando esse
+   campo, sem trocar o tipo. */
+const professionalServiceJsonLd: WithContext<ProfessionalService> = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': organizationId,
+  name: 'Spirecode',
+  url: siteUrl,
+  logo: logoUrl,
+  email: 'contato@spirecode.com.br',
+  telephone: '+5577988481208',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Praça José Ferreira, 226, centro',
+    addressLocality: 'Guanambi',
+    addressRegion: 'BA',
+    addressCountry: 'BR',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: 'Guanambi',
+  },
+}
+
+const websiteJsonLd: WithContext<WebSite> = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  url: siteUrl,
+  name: 'Spirecode',
+  description: siteDescription,
+  inLanguage: 'pt-BR',
+  publisher: { '@id': organizationId },
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {
@@ -78,6 +132,14 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="pt-br" className={`${IBM_mono.variable} ${IBM_sans.variable} ${figtree.variable}`}>
       <body className='flex flex-col min-h-screen bg-ds-off-white overflow-x-hidden max-w-dvw'>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         <MotionProvider>
           <SkipLink/>
           <Header/>
