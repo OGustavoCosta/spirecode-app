@@ -1,4 +1,9 @@
 /* ======================================================================== */
+/* VERCEL */
+import { Analytics } from "@vercel/analytics/next"
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
+/* ======================================================================== */
 /* IMPORTAÇÃO DE FONTES */
 import { IBM_Plex_Sans, IBM_Plex_Mono, Figtree } from 'next/font/google'
 
@@ -126,12 +131,16 @@ const websiteJsonLd: WithContext<WebSite> = {
   publisher: { '@id': organizationId },
 }
 
+
+
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
   return (
     <html lang="pt-br" className={`${IBM_mono.variable} ${IBM_sans.variable} ${figtree.variable}`}>
       <body className='flex flex-col min-h-screen bg-ds-off-white overflow-x-hidden max-w-dvw'>
+
+        {/* SCHEMA.ORG */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceJsonLd) }}
@@ -140,12 +149,18 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
+
+        {/* CONTEÚDO */}
         <MotionProvider>
           <SkipLink/>
           <Header/>
           <main id='main' className='main grow'>{children}</main>
           <Footer/>
         </MotionProvider>
+
+        {/* ANÁLISES (VERCEL) */}
+        <SpeedInsights/>
+        <Analytics/>
       </body>
     </html>
   )
