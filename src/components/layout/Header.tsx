@@ -1,24 +1,38 @@
+/* ======================================================================== */
 /* ROTAS */
 import Link from 'next/link';
 
+/* ======================================================================== */
 /* MOTION */
 import * as motion from "motion/react-client"
 import { motionContainer, fadeDownItem} from "@/lib/animation"
 
+/* ======================================================================== */
 /* COMPONENTES */
 import HeaderDrawer from './HeaderDrawer';
 import HeaderScroll from './HeaderScroll';
 
-function Header(){
+/* ======================================================================== */
+/* IMAGENS */
+import spire from '@/assets/images/header/SPIRE.svg'
+import Image from 'next/image';
+
+function Header({ fixed }: {fixed?: boolean}){
   return(
-    <header className={`header background-section py-6 flex flex-col items-center w-full absolute text-ds-neutral-900 font-ds-ibm-mono z-10`}>
+    <header className={`header background-section flex flex-col items-center w-full absolute text-ds-pine font-ds-ibm-mono z-10 border-ds-neutral-200 ${fixed ? 'border-b py-4 sticky top-0 bg-ds-neutral-50' : 'py-6'}`}>
       {/* HEADER PRINCIPAL */}
-      <div className="header__main max-w-content w-full flex justify-end md:justify-center items-center">
+      <div className={`header__main max-w-content w-full flex items-center ${fixed ? 'justify-between' : 'justify-center'}`}>
+        {/* LOGO */}
+        <motion.div className={`header__logo ${fixed ? '' : 'hidden'}`} aria-hidden="true">
+          <Image src={spire} alt="" className="header__img"/>
+        </motion.div>
+
         {/* MENU MOBILE */}
-        <HeaderDrawer/>
+        <HeaderDrawer fixed={!fixed}/>
 
         {/* NAVEGAÇÃO */}
         <nav className="header__nav md:flex justify-between items-center hidden text-base font-medium uppercase" aria-label="Menu principal">
+
           <motion.ul 
             className="header__list gap-8 flex items-center"
             variants={motionContainer}

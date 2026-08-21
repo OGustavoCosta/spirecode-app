@@ -69,6 +69,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    cases: Case;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    cases: CasesSelect<false> | CasesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -162,6 +164,103 @@ export interface Media {
   focalY?: number | null;
 }
 /**
+ * Projetos entregues, exibidos no carrossel da home e em página própria.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cases".
+ */
+export interface Case {
+  id: number;
+  /**
+   * Nome do cliente, como aparece no card e no topo da página.
+   */
+  title: string;
+  /**
+   * When enabled, the slug will auto-generate from the title field on save and autosave.
+   */
+  generateSlug?: boolean | null;
+  slug: string;
+  /**
+   * Marca do cliente, de preferência SVG ou PNG com fundo transparente.
+   */
+  logo: number | Media;
+  /**
+   * Imagem de fundo do card no carrossel de cases e na hero da página própria
+   */
+  cover: {
+    /**
+     * Formato horizontal, a partir de 1920px de largura.
+     */
+    desktop: number | Media;
+    /**
+     * Formato vertical, para telas estreitas.
+     */
+    mobile: number | Media;
+  };
+  /**
+   * Endereço do projeto no ar. Alimenta o botão "Visite".
+   */
+  websiteUrl?: string | null;
+  /**
+   * Chamada curta do card no carrossel da home. Não aparece na página do case.
+   */
+  excerpt: string;
+  /**
+   * Texto de abertura da página do case, ao lado da capa.
+   */
+  description: string;
+  /**
+   * Vira os badges do card. Para incluir um serviço novo, edite as opções em Cases.ts.
+   */
+  services: (
+    'Site' | 'Landing page' | 'E-commerce' | 'Sistema sob medida' | 'ERP' | 'Identidade visual' | 'Time alocado'
+  )[];
+  /**
+   * Ramo em que o cliente atua.
+   */
+  segments: string;
+  /**
+   * Blocos de conteúdo da página do case. A ordem aqui é a ordem do sumário lateral.
+   */
+  sections: {
+    /**
+     * Rótulo da seção no sumário lateral. Ex.: Empresa, Desafio, Solução.
+     */
+    title: string;
+    /**
+     * Âncora do link no sumário. Só minúsculas, números e hífen. Ex.: desafio
+     */
+    slug: string;
+    /**
+     * Como o cabeçalho da seção aparece. O sumário usa o título nos dois casos.
+     */
+    variant: 'title' | 'logo';
+    body: {
+      root: {
+        type: string;
+        children: {
+          type: any;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    /**
+     * Imagem que acompanha a seção. Opcional.
+     */
+    image?: (number | null) | Media;
+    id?: string | null;
+  }[];
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
@@ -192,6 +291,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'cases';
+        value: number | Case;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -274,6 +377,40 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cases_select".
+ */
+export interface CasesSelect<T extends boolean = true> {
+  title?: T;
+  generateSlug?: T;
+  slug?: T;
+  logo?: T;
+  cover?:
+    | T
+    | {
+        desktop?: T;
+        mobile?: T;
+      };
+  websiteUrl?: T;
+  excerpt?: T;
+  description?: T;
+  services?: T;
+  segments?: T;
+  sections?:
+    | T
+    | {
+        title?: T;
+        slug?: T;
+        variant?: T;
+        body?: T;
+        image?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

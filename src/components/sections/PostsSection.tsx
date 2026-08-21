@@ -61,7 +61,7 @@ const swiperBreakpoints = {
   1280: { spaceBetween: 40, slidesOffsetBefore: 0, slidesOffsetAfter: 0, slidesPerView: 3 },
 }
 
-function BlogSection(){
+function PostsSection(){
   const swiperRef = useRef<SwiperInstance | null>(null)
 
   /* estado só para desabilitar as setas nas pontas */
@@ -76,19 +76,19 @@ function BlogSection(){
   const buttonStyle = 'cursor-pointer transition-all hover:opacity-80 disabled:opacity-30 disabled:cursor-not-allowed'
 
   return(
-    <div className="blog__background background-section py-10 px-0 min-[1280px]:px-8">
-      <section className="blog max-w-content max-w-[1280px] w-full space-y-10">
-        <header className="blog__header text-ds-pine flex flex-col md:flex-row justify-between gap-y-8 px-4 md:px-8 mlg:px-10">
-          <h2 className="blog__title text-[2rem]/[100%] font-ds-ibm-mono font-bold max-w-90 lg:max-w-content uppercase">ASSUNTOS QUE PODEM TE INTERESSAR</h2>
-          <div className="blog__wrapper flex gap-24 items-center w-full md:w-auto justify-between">
-            <a href="" className="blog__link underline hover:scale-101 hover:opacity-80 transition-all block whitespace-nowrap shrink-0">Ver Todos</a>
-            <div className="blog__buttons flex  min-[1100px]:hidden gap-3">
+    <div className="posts__background background-section py-10 px-0 min-[1280px]:px-8">
+      <section className="posts max-w-content max-w-[1280px] w-full space-y-10">
+        <header className="posts__header text-ds-pine flex flex-col md:flex-row justify-between gap-y-8 px-4 md:px-8 mlg:px-10">
+          <h2 className="posts__title text-[2rem]/[100%] font-ds-ibm-mono font-bold max-w-90 lg:max-w-content uppercase">ASSUNTOS QUE PODEM TE INTERESSAR</h2>
+          <div className="posts__wrapper flex gap-24 items-center w-full md:w-auto justify-between">
+            <a href="" className="posts__link underline hover:scale-101 hover:opacity-80 transition-all block whitespace-nowrap shrink-0">Ver Todos</a>
+            <div className="posts__buttons flex  min-[1100px]:hidden gap-3">
               <button
                 type="button"
                 aria-label="Ver posts anteriores"
                 onClick={(event) => { swiperRef.current?.slidePrev(); nudge(event.currentTarget, -1) }}
                 disabled={isBeginning}
-                className={`blog__button ${buttonStyle}`}
+                className={`posts__button ${buttonStyle}`}
               >
                 <ArrowLeftLong/>
               </button>
@@ -97,7 +97,7 @@ function BlogSection(){
                 aria-label="Ver próximos posts"
                 onClick={(event) => { swiperRef.current?.slideNext(); nudge(event.currentTarget, 1) }}
                 disabled={isEnd}
-                className={`blog__button ${buttonStyle}`}
+                className={`posts__button ${buttonStyle}`}
               >
                 <ArrowRightLong/>
               </button>
@@ -126,4 +126,4 @@ function BlogSection(){
   )
 }
 
-export default BlogSection
+export default PostsSection

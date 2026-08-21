@@ -30,14 +30,11 @@ const figtree = Figtree({
 
 /* ======================================================================== */
 /* IMPORTAÇÃO DE COMPONENTES */
-import SkipLink from '@/components/acessibility/SkipLink'
-import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import MotionProvider from '@/components/providers/MotionProvider'
 
 /* ======================================================================== */
 /* IMPORTAÇÃO DE CSS */
 import './base.css'
-import MotionProvider from '@/components/providers/MotionProvider'
 
 /* ======================================================================== */
 /* METADADOS */
@@ -85,20 +82,10 @@ export const metadata = {
 import type { ProfessionalService, WebSite, WithContext } from 'schema-dts'
 import spirecodeLogo from '@/assets/images/SPIRECODE.svg'
 
-/* '@id' compartilhado entre os dois blocos: o WebSite referencia a
-   ProfessionalService como publisher em vez de duplicar os dados, então
-   o Google entende que é a mesma entidade nos dois lugares. */
 const organizationId = `${siteUrl}/#organization`
 
-/* .src é o único jeito de virar string: o campo `logo` do schema.org quer
-   uma URL, e o import de asset do Next devolve um StaticImageData. */
 const logoUrl = new URL(spirecodeLogo.src, siteUrl).toString()
 
-/* ProfessionalService (não Organization genérico) porque a Spirecode tem
-   endereço físico e o esforço comercial começa local, em Guanambi - BA —
-   areaServed é o que sinaliza isso sem implicar atendimento presencial
-   (o serviço em si é remoto). Ambição nacional vem depois, ampliando esse
-   campo, sem trocar o tipo. */
 const professionalServiceJsonLd: WithContext<ProfessionalService> = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
@@ -131,8 +118,6 @@ const websiteJsonLd: WithContext<WebSite> = {
   publisher: { '@id': organizationId },
 }
 
-
-
 export default async function RootLayout(props: { children: React.ReactNode }) {
   const { children } = props
 
@@ -152,10 +137,7 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
 
         {/* CONTEÚDO */}
         <MotionProvider>
-          <SkipLink/>
-          <Header/>
-          <main id='main' className='main grow'>{children}</main>
-          <Footer/>
+          {children}
         </MotionProvider>
 
         {/* ANÁLISES (VERCEL) */}

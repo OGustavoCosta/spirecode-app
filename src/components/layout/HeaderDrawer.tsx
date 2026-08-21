@@ -9,7 +9,7 @@ import { X, Menu } from "lucide-react"
 import * as motion from "motion/react-client"
 import { fadeDownItem } from "@/lib/animation"
 
-function HeaderDrawer(){
+function HeaderDrawer({ fixed }: {fixed: boolean}){
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
@@ -28,7 +28,7 @@ function HeaderDrawer(){
     <>
       {/* BOTÃO SANDUÍCHE */}
       <motion.button
-        className="headerDrawer__button md:hidden cursor-pointer bg-ds-off-white p-2 rounded-lg fixed top-[40px] right-[32px]"
+        className={`headerDrawer__button md:hidden cursor-pointer ${fixed ? 'bg-ds-off-white p-2 rounded-lg fixed top-[40px] right-[32px]' : ''}`}
         onClick={() => setIsOpen(true)}
         aria-label="Abrir menu de navegação"
         aria-expanded={isOpen}
